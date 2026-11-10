@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agentes da Qualidade</title>
+<style>
+:root{
+  color-scheme: light;
+  --azul:#0055FF; --azul-h:#1447E6; --azul-800:#193CB8; --navy:#080E32; --tint:#F0F2FA;
+  --canvas:#EAEEF6; --coral:#FC6058; --txt2:#6B6E84; --borda:#E6E7EA; --branco:#fff;
+  --verde:#0E8A4F; --verde-t:#E3F5EC; --ambar:#A35F00; --ambar-t:#FFF2DC;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--canvas);color:var(--navy);font:15px/1.5 "Helvetica Neue",Arial,sans-serif}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+.brand{background:var(--navy);color:#fff;font-size:12px;letter-spacing:.12em;padding:10px 0}
+.brand b{color:var(--coral)}
+header{background:var(--branco);border-bottom:1px solid var(--borda);padding:32px 0 28px}
+header h1{margin:6px 0 8px;font-size:30px;line-height:1.15}
+header p{margin:0;color:var(--txt2);max-width:760px}
+.kicker{color:var(--azul);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
+.stat{background:var(--tint);border-radius:10px;padding:14px 16px}
+.stat b{display:block;font-size:26px;color:var(--azul)}
+.stat span{font-size:13px;color:var(--txt2)}
+section{margin:28px 0}
+h2{font-size:20px;margin:0 0 4px}
+.sub{color:var(--txt2);margin:0 0 16px;max-width:780px}
+.card{background:var(--branco);border:1px solid var(--borda);border-radius:12px;padding:20px}
+.crit{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.crit div{border-left:3px solid var(--azul);padding:4px 0 4px 12px}
+.crit b{display:block}
+.crit span{font-size:13px;color:var(--txt2)}
+.filtros{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.filtros button{border:1px solid var(--borda);background:var(--branco);color:var(--navy);border-radius:999px;padding:7px 14px;font:inherit;font-size:13px;cursor:pointer}
+.filtros button[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px}
+.ag{background:var(--branco);border:1px solid var(--borda);border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+.ag .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.ag .id{font-weight:700;color:var(--azul);font-size:13px}
+.ag h3{margin:0;font-size:16px;line-height:1.3}
+.ag p{margin:0;font-size:14px;color:#2a2f4a}
+.ag .why{font-size:13px;color:var(--txt2)}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-size:12px;border-radius:6px;padding:2px 8px;background:var(--tint);color:var(--azul-800)}
+.tag.baixa{background:var(--verde-t);color:var(--verde)}
+.tag.media{background:var(--ambar-t);color:var(--ambar)}
+.tag.alta{background:#FDE7E6;color:#B3261E}
+.tag.imp{background:var(--navy);color:#fff}
+.tag.bloq{background:#FDE7E6;color:#B3261E}
+.score{font-size:12px;color:var(--txt2);white-space:nowrap}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th,.tbl td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--borda);vertical-align:top}
+.tbl th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--txt2);font-weight:700}
+.tbl tr.rev td{background:var(--tint);font-weight:700}
+.tbl .d{white-space:nowrap;font-weight:700}
+.tbl .k{color:var(--azul);font-weight:700;margin-right:4px}
+.scroll{overflow-x:auto}
+.notas{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.nota{background:var(--branco);border:1px solid var(--borda);border-top:3px solid var(--coral);border-radius:12px;padding:16px 18px}
+.nota h3{margin:0 0 6px;font-size:15px}
+.nota p{margin:0;font-size:14px;color:#2a2f4a}
+.def{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;counter-reset:p}
+.def div{background:var(--tint);border-radius:10px;padding:12px 14px;font-size:14px}
+.def div::before{counter-increment:p;content:counter(p);display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--azul);color:#fff;font-size:12px;font-weight:700;margin-right:8px}
+footer{color:var(--txt2);font-size:13px;padding:24px 0 40px;border-top:1px solid var(--borda);margin-top:36px}
+@media (max-width:820px){
+  .stats,.crit,.def{grid-template-columns:repeat(2,1fr)}
+  .notas{grid-template-columns:1fr}
+  header h1{font-size:24px}
+}
+@media (max-width:420px){ .grid{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+<div class="brand"><div class="wrap"><b>●</b> SEAZONE · FRANQUIAS · QUALIDADE</div></div>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">Plano de criação de agentes · 10/11/2026</div>
+    <h1>Agentes de automação da Qualidade</h1>
+    <p>Levantamento das oportunidades de agentes na área de Qualidade e Fiscalização, priorizadas por impacto, potencial de automação, esforço e complexidade, com o cronograma para entregar dois agentes por dia de segunda a quinta e revisar tudo na sexta.</p>
+    <div class="stats">
+      <div class="stat"><b>19</b><span>oportunidades levantadas, 18 prontas para entrar no cronograma</span></div>
+      <div class="stat"><b>7</b><span>de baixa complexidade, quase todas skills que já existem e ainda dependem de rodar à mão</span></div>
+      <div class="stat"><b>12</b><span>de média ou alta complexidade, com IA decidindo ou redigindo</span></div>
+      <div class="stat"><b>13</b><span>agentes no cronograma até 19/11, mais a revisão das sextas 13/11 e 20/11</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section>
+  <h2>Como a lista foi priorizada</h2>
+  <p class="sub">Cada oportunidade saiu de um processo da arquitetura da Qualidade que hoje é manual, está em criação ou depende de alguém rodar uma skill. A nota vai de 1 a 5 em cada critério.</p>
+  <div class="card crit">
+    <div><b>Impacto operacional</b><span>Quanto muda na nota, nas ocorrências, nas multas ou no tempo do time.</span></div>
+    <div><b>Potencial de automação</b><span>Quanto do processo o agente consegue fazer sem uma pessoa.</span></div>
+    <div><b>Esforço</b><span>Quanto falta construir. Skill pronta e regra fixa pesam menos.</span></div>
+    <div><b>Complexidade</b><span>Baixa: regra fixa ou skill pronta. Média ou alta: IA julga, redige ou fala com a franquia.</span></div>
+  </div>
+</section>
+
+<section>
+  <h2>O que conta como agente entregue</h2>
+  <p class="sub">Um agente só entra como entregue quando cumpre os quatro passos. Os agentes que falam com a franquia sempre mostram uma prévia e só enviam depois do ok.</p>
+  <div class="def">
+    <div>Criado, com a regra escrita</div>
+    <div>Testado com dados reais</div>
+    <div>Rodando sozinho no horário</div>
+    <div>Registrado na arquitetura de processos</div>
+  </div>
+</section>
+
+<section>
+  <h2>Oportunidades priorizadas</h2>
+  <p class="sub">Ordenadas pela prioridade dentro de cada nível de complexidade. O código entre parênteses é o processo da arquitetura que o agente atende.</p>
+  <div class="filtros" role="group" aria-label="Filtrar por complexidade">
+    <button type="button" data-f="todas" aria-pressed="true">Todas</button>
+    <button type="button" data-f="baixa" aria-pressed="false">Baixa complexidade</button>
+    <button type="button" data-f="media" aria-pressed="false">Média ou alta</button>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section>
+  <h2>Cronograma de execução</h2>
+  <p class="sub">Cada dia de segunda a quinta entrega um agente de baixa e um de média ou alta complexidade. A sexta é só de verificação: uso real, estabilidade, resultado, falhas e melhorias, com relatório.</p>
+  <div class="card scroll">
+    <table class="tbl">
+      <thead><tr><th>Dia</th><th>Baixa complexidade</th><th>Média ou alta complexidade</th></tr></thead>
+      <tbody id="crono"></tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>Pontos de atenção</h2>
+  <div class="notas">
+    <div class="nota"><h3>A meta de dois por dia acaba em cerca de duas semanas</h3><p>A área tem perto de 20 agentes reais para criar. Depois disso, o ganho está em evoluir os que já rodam, e a meta da semana passa a ser de melhorias medidas, não de quantidade.</p></div>
+    <div class="nota"><h3>Rodar sozinho depende de onde o agente vive</h3><p>Agendador do Windows e rotinas do Claude Code só rodam com o computador ligado. Os agentes que falam com a franquia (B7, M2 e M3) devem ir para a plataforma oficial de agentes da Seazone.</p></div>
+    <div class="nota"><h3>Um item está parado por regra de negócio</h3><p>O agente de detratores e stop de crescimento (6.6) só começa quando a regra estiver definida. Até lá, fica fora do cronograma.</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer><div class="wrap">Franquias · Qualidade e Fiscalização · Documento interno · atualizado em 10/11/2026</div></footer>
+
+<script>
+const AG = [
+  {id:"B1",c:"baixa",n:"Agente de KPIs da Qualidade",p:"11.1 · 11.2",i:5,a:5,e:2,
+   o:"Todo fim de dia útil calcula os KPIs dos setores 10 e 15 e as notas de avaliação, compara com o que já está no kpi-system e lança o que for aprovado.",
+   w:"Junta três skills que já existem (kpi-qualidade, kpi-comentario e notas-avaliacao). O desenho já está feito."},
+  {id:"B2",c:"baixa",n:"Boletim diário de qualidade",p:"8.1",i:4,a:5,e:2,
+   o:"Posta no Slack as ocorrências recebidas e aplicadas, as multas identificadas e as franquias perto do limite.",
+   w:"Só lê o app de ocorrências e multas e publica. Hoje o processo está em criação."},
+  {id:"B3",c:"baixa",n:"Alerta de volume fora da faixa",p:"8.2",i:3,a:5,e:1,
+   o:"Avisa quando o volume de ocorrências de uma fonte sai da faixa esperada, para pegar fonte parada ou com erro.",
+   w:"Usa a mesma consulta do boletim diário."},
+  {id:"B4",c:"baixa",n:"Aviso de franquia perto da multa",p:"6.2",i:5,a:4,e:2,
+   o:"Lista as franquias a poucos pontos do limite do porte e prepara o aviso preventivo.",
+   w:"Hoje é manual. O motor de pontos já calcula a janela de 90 dias e o limite."},
+  {id:"B5",c:"baixa",n:"Chamados parados há mais de 5 dias",p:"13.2",i:3,a:4,e:1,
+   o:"Toda sexta lista os chamados de qualidade parados e sugere cobrar ou encerrar cada um.",
+   w:"Regra fixa, hoje feita à mão."},
+  {id:"B6",c:"baixa",n:"Panorama de Nova Ocorrência agendado",p:"5.1 · 5.3",i:3,a:4,e:1,
+   o:"De manhã, mostra os cards ativos em Nova Ocorrência por origem, com evidência, duplicidade e pontos de atenção antes de aprovar.",
+   w:"A skill panorama-nova-ocorrencia já existe. Falta rodar sozinha."},
+  {id:"B7",c:"baixa",n:"Comunicar a multa à franquia",p:"6.4",i:3,a:4,e:2,
+   o:"Quando a multa é validada, redige a comunicação padrão com as ocorrências que a justificam, para envio depois do ok.",
+   w:"Hoje é manual e segue sempre o mesmo modelo."},
+  {id:"M1",c:"media",n:"Caça às ocorrências diária",p:"5.2",i:5,a:4,e:3,
+   o:"Varre todo dia os suportes, o Reclame Aqui e o Sapron atrás de falha de franquia que não virou ocorrência e abre os cards fortes em Nova Ocorrência.",
+   w:"É a maior fonte de ocorrência perdida. A skill caca-ocorrencias existe, mas roda só quando pedida."},
+  {id:"M2",c:"media",n:"Cobrar e julgar a defesa da franquia",p:"5.5 · 5.6",i:5,a:4,e:4,
+   o:"Lê os chamados de ocorrência em andamento, cobra quem passou do prazo de 48 horas e dá o parecer de cada defesa: justificativa válida, aviso formal ou pedido de evidência.",
+   w:"Hoje a cobrança é manual. A skill respostas-sapron faz o parecer; falta rodar sozinha com envio após o ok."},
+  {id:"M3",c:"media",n:"Encerrar e aplicar a ocorrência",p:"5.7",i:4,a:4,e:3,
+   o:"Depois do veredito ou do prazo vencido, encerra o chamado e move o card para aplicado ou justificado.",
+   w:"Fecha o ciclo do M2. Hoje é manual."},
+  {id:"M4",c:"media",n:"Radar semanal de quinta",p:"8.3",i:4,a:4,e:3,
+   o:"Mostra as áreas sem ocorrência, as franquias e regiões caindo de nota e os temas que mais aparecem, cada um com o porquê.",
+   w:"Precisa de IA para explicar a causa. Hoje está em criação."},
+  {id:"M5",c:"media",n:"Triagem diária dos comentários negativos",p:"1.4",i:5,a:4,e:3,
+   o:"Analisa os comentários de nota 0,5 a 3,5 que chegaram no dia e dá o parecer de ocorrência e de manutenção, enviando depois do ok.",
+   w:"A skill triagem-comentarios-negativos existe. Falta rodar todo dia sem pedir as datas."},
+  {id:"M6",c:"media",n:"Franquias críticas de nota",p:"3.1",i:5,a:3,e:3,
+   o:"Lista os imóveis abaixo de 4,80 por franquia, aponta os temas que puxam a nota para baixo e prepara o plano de ação de cada franquia.",
+   w:"Hoje é manual, a cada 15 dias. Liga a nota ao trabalho com a franquia."},
+  {id:"M7",c:"media",n:"Auditoria amostral dos julgamentos",p:"10.4",i:3,a:3,e:3,
+   o:"Toda semana sorteia julgamentos de ocorrência e confere se seguiram a régua, apontando divergências.",
+   w:"Dá segurança para deixar o M2 e o M3 rodando."},
+  {id:"M8",c:"media",n:"Termômetro semanal automático",p:"11.4",i:3,a:4,e:3,
+   o:"Monta o resultado e a saúde dos processos das quatro trilhas para a liderança, de quarta a terça.",
+   w:"Hoje é montado à mão. As faixas de cor ainda são provisórias."},
+  {id:"M9",c:"media",n:"Pauta mensal das grandes franquias",p:"3.2",i:3,a:3,e:3,
+   o:"Prepara o resultado do mês de cada franquia Grande e Master para a reunião de 30 minutos.",
+   w:"Processo em criação. Roda uma vez por mês."},
+  {id:"M10",c:"media",n:"Plano de ação mensal do Reclame Aqui",p:"4.2",i:3,a:3,e:2,
+   o:"Junto do alerta do dia 20, calcula quantas avaliações positivas faltam para subir 0,1 na nota e propõe o plano do mês.",
+   w:"Usa o alerta que já existe. Roda uma vez por mês."},
+  {id:"M11",c:"alta",n:"Varrer mudanças de processo nas áreas",p:"9.2",i:3,a:3,e:4,
+   o:"Lê os canais e as tarefas das outras áreas e avisa quando uma mudança de processo pede regra nova de ocorrência.",
+   w:"Hoje é manual. Precisa ler muitas fontes diferentes."},
+  {id:"—",c:"alta",n:"Detratores e stop de crescimento",p:"6.6",i:0,a:0,e:0,bloq:true,
+   o:"Identificar franquias detratoras e aplicar o stop de crescimento.",
+   w:"Parado: falta definir a regra de negócio."}
+];
+const CRONO = [
+  ["Ter 10/11","B1","Inventário dos agentes atuais conferido na máquina"],
+  ["Qua 11/11","B2","M1"],
+  ["Qui 12/11","B3","M4"],
+  ["Sex 13/11","rev"],
+  ["Seg 16/11","B4","M5"],
+  ["Ter 17/11","B5","M2"],
+  ["Qua 18/11","B6","M3"],
+  ["Qui 19/11","B7","M6"],
+  ["Sex 20/11","rev"],
+  ["Semana de 23/11","M7 e M8","M9, M10 e M11"]
+];
+const lvl={baixa:"Baixa",media:"Média",alta:"Alta"};
+const byId=Object.fromEntries(AG.map(a=>[a.id,a]));
+function card(a){
+  const sc=a.bloq?'<span class="tag bloq">Parado</span>':`<span class="score">impacto ${a.i} · automação ${a.a} · esforço ${a.e}</span>`;
+  return `<article class="ag" data-c="${a.c==='baixa'?'baixa':'media'}">
+    <div class="top"><span class="id">${a.id}</span>${sc}</div>
+    <h3>${a.n}</h3>
+    <div class="tags"><span class="tag ${a.c}">${lvl[a.c]} complexidade</span><span class="tag">Processo ${a.p}</span></div>
+    <p>${a.o}</p><p class="why">${a.w}</p></article>`;
+}
+document.getElementById("grid").innerHTML=AG.map(card).join("");
+const cell=v=>byId[v]?`<span class="k">${v}</span>${byId[v].n}`:v;
+document.getElementById("crono").innerHTML=CRONO.map(r=>r[1]==="rev"
+  ?`<tr class="rev"><td class="d">${r[0]}</td><td colspan="2">Revisão dos agentes da semana e relatório: criados, objetivo, status, uso e melhorias</td></tr>`
+  :`<tr><td class="d">${r[0]}</td><td>${cell(r[1])}</td><td>${cell(r[2])}</td></tr>`).join("");
+document.querySelectorAll(".filtros button").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll(".filtros button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  const f=b.dataset.f;
+  document.querySelectorAll(".ag").forEach(c=>c.style.display=(f==="todas"||c.dataset.c===f)?"":"none");
+}));
+</script>
+</body>
+</html>
