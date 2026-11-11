@@ -83,9 +83,9 @@ footer{color:var(--txt2);font-size:13px;padding:24px 0 40px;border-top:1px solid
     <h1>Agentes de automação da Qualidade</h1>
     <p>Levantamento das oportunidades de agentes na área de Qualidade e Fiscalização, priorizadas por impacto, potencial de automação, esforço e complexidade, com o cronograma para entregar dois agentes por dia de segunda a quinta e revisar tudo na sexta.</p>
     <div class="stats">
-      <div class="stat"><b>19</b><span>oportunidades levantadas, 18 prontas para entrar no cronograma</span></div>
+      <div class="stat"><b>20</b><span>oportunidades levantadas, 19 prontas para entrar no cronograma</span></div>
       <div class="stat"><b>7</b><span>de baixa complexidade, quase todas skills que já existem e ainda dependem de rodar à mão</span></div>
-      <div class="stat"><b>12</b><span>de média ou alta complexidade, com IA decidindo ou redigindo</span></div>
+      <div class="stat"><b>13</b><span>de média ou alta complexidade, com IA decidindo ou redigindo</span></div>
       <div class="stat"><b>13</b><span>agentes no cronograma até 19/11, mais a revisão das sextas 13/11 e 20/11</span></div>
     </div>
   </div>
@@ -206,13 +206,16 @@ const AG = [
   {id:"M11",c:"alta",n:"Varrer mudanças de processo nas áreas",p:"9.2",i:3,a:3,e:4,
    o:"Lê os canais e as tarefas das outras áreas e avisa quando uma mudança de processo pede regra nova de ocorrência.",
    w:"Hoje é manual. Precisa ler muitas fontes diferentes."},
+  {id:"M12",c:"media",n:"Respostas às avaliações positivas do Airbnb",p:"a definir",i:4,a:4,e:2,
+   o:"De segunda a sexta, às 9h, puxa da Stays as avaliações nota 4 e 5 ainda dentro da janela de 13 dias, redige as respostas das 50 que vencem primeiro e separa as que citam problema para a manutenção. Publica pelo Chrome só depois do ok.",
+   w:"Entrou fora do levantamento inicial, em 11/11. A skill responder-airbnb já existia. Falta registrar na arquitetura de processos.",ok:"Criado · 9h"},
   {id:"—",c:"alta",n:"Detratores e stop de crescimento",p:"6.6",i:0,a:0,e:0,bloq:true,
    o:"Identificar franquias detratoras e aplicar o stop de crescimento.",
    w:"Parado: falta definir a regra de negócio."}
 ];
 const CRONO = [
   ["Ter 10/11","B1","Inventário dos agentes atuais conferido na máquina"],
-  ["Qua 11/11","<span class=\"k\">B2</span>Boletim diário de qualidade<br><span class=\"k\">B6</span>Panorama de Nova Ocorrência agendado (criado, adiantado de 18/11)","M1"],
+  ["Qua 11/11","<span class=\"k\">B2</span>Boletim diário de qualidade<br><span class=\"k\">B6</span>Panorama de Nova Ocorrência agendado (criado, adiantado de 18/11)","<span class=\"k\">M1</span>Caça às ocorrências diária<br><span class=\"k\">M12</span>Respostas às avaliações positivas do Airbnb (criado, item novo)"],
   ["Qui 12/11","B3","M4"],
   ["Sex 13/11","rev"],
   ["Seg 16/11","B4","M5"],
