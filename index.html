@@ -49,6 +49,7 @@ h2{font-size:20px;margin:0 0 4px}
 .tag.alta{background:#FDE7E6;color:#B3261E}
 .tag.imp{background:var(--navy);color:#fff}
 .tag.bloq{background:#FDE7E6;color:#B3261E}
+.tag.ok{background:var(--verde-t);color:var(--verde);font-weight:700}
 .score{font-size:12px;color:var(--txt2);white-space:nowrap}
 .tbl{width:100%;border-collapse:collapse;font-size:14px}
 .tbl th,.tbl td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--borda);vertical-align:top}
@@ -147,7 +148,7 @@ footer{color:var(--txt2);font-size:13px;padding:24px 0 40px;border-top:1px solid
 
 </main>
 
-<footer><div class="wrap">Franquias · Qualidade e Fiscalização · Documento interno · atualizado em 10/11/2026</div></footer>
+<footer><div class="wrap">Franquias · Qualidade e Fiscalização · Documento interno · atualizado em 11/11/2026</div></footer>
 
 <script>
 const AG = [
@@ -167,8 +168,8 @@ const AG = [
    o:"Toda sexta lista os chamados de qualidade parados e sugere cobrar ou encerrar cada um.",
    w:"Regra fixa, hoje feita à mão."},
   {id:"B6",c:"baixa",n:"Panorama de Nova Ocorrência agendado",p:"5.1 · 5.3",i:3,a:4,e:1,
-   o:"De manhã, mostra os cards ativos em Nova Ocorrência por origem, com evidência, duplicidade e pontos de atenção antes de aprovar.",
-   w:"A skill panorama-nova-ocorrencia já existe. Falta rodar sozinha."},
+   o:"De segunda a sexta, às 16h, mostra os cards ativos em Nova Ocorrência por origem, com evidência, duplicidade e pontos de atenção antes de aprovar. Em seguida confere no Sapron os cards de Implantação e, quando houver, os de Manutenção, com veredito por card.",
+   w:"Criado em 11/11. Roda sozinho pelo Agendador do Windows e abre o resultado no navegador. As análises de Implantação e de Manutenção rodam como workflow. Falta registrar na arquitetura de processos.",ok:"Criado · 16h"},
   {id:"B7",c:"baixa",n:"Comunicar a multa à franquia",p:"6.4",i:3,a:4,e:2,
    o:"Quando a multa é validada, redige a comunicação padrão com as ocorrências que a justificam, para envio depois do ok.",
    w:"Hoje é manual e segue sempre o mesmo modelo."},
@@ -211,12 +212,12 @@ const AG = [
 ];
 const CRONO = [
   ["Ter 10/11","B1","Inventário dos agentes atuais conferido na máquina"],
-  ["Qua 11/11","B2","M1"],
+  ["Qua 11/11","<span class=\"k\">B2</span>Boletim diário de qualidade<br><span class=\"k\">B6</span>Panorama de Nova Ocorrência agendado (criado, adiantado de 18/11)","M1"],
   ["Qui 12/11","B3","M4"],
   ["Sex 13/11","rev"],
   ["Seg 16/11","B4","M5"],
   ["Ter 17/11","B5","M2"],
-  ["Qua 18/11","B6","M3"],
+  ["Qua 18/11","Livre: o B6 foi adiantado para 11/11","M3"],
   ["Qui 19/11","B7","M6"],
   ["Sex 20/11","rev"],
   ["Semana de 23/11","M7 e M8","M9, M10 e M11"]
@@ -228,7 +229,7 @@ function card(a){
   return `<article class="ag" data-c="${a.c==='baixa'?'baixa':'media'}">
     <div class="top"><span class="id">${a.id}</span>${sc}</div>
     <h3>${a.n}</h3>
-    <div class="tags"><span class="tag ${a.c}">${lvl[a.c]} complexidade</span><span class="tag">Processo ${a.p}</span></div>
+    <div class="tags"><span class="tag ${a.c}">${lvl[a.c]} complexidade</span><span class="tag">Processo ${a.p}</span>${a.ok?`<span class="tag ok">${a.ok}</span>`:""}</div>
     <p>${a.o}</p><p class="why">${a.w}</p></article>`;
 }
 document.getElementById("grid").innerHTML=AG.map(card).join("");
