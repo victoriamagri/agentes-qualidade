@@ -148,7 +148,7 @@ footer{color:var(--txt2);font-size:13px;padding:24px 0 40px;border-top:1px solid
 
 </main>
 
-<footer><div class="wrap">Franquias · Qualidade e Fiscalização · Documento interno · atualizado em 11/11/2026</div></footer>
+<footer><div class="wrap">Franquias · Qualidade e Fiscalização · Documento interno · atualizado em 12/11/2026</div></footer>
 
 <script>
 const AG = [
@@ -186,8 +186,8 @@ const AG = [
    o:"Mostra as áreas sem ocorrência, as franquias e regiões caindo de nota e os temas que mais aparecem, cada um com o porquê.",
    w:"Precisa de IA para explicar a causa. Hoje está em criação."},
   {id:"M5",c:"media",n:"Triagem diária dos comentários negativos",p:"1.4",i:5,a:4,e:3,
-   o:"Analisa os comentários de nota 0,5 a 3,5 que chegaram no dia e dá o parecer de ocorrência e de manutenção, enviando depois do ok.",
-   w:"A skill triagem-comentarios-negativos existe. Falta rodar todo dia sem pedir as datas."},
+   o:"De segunda a sexta, às 14h, analisa os comentários de nota 0,5 a 3,5 que chegaram no dia (na segunda, também os de sábado e domingo) e dá o parecer de ocorrência e de manutenção. Ao terminar, abre o terminal com o Claude já na conversa e envia pelos botões do case-cheer só depois do ok.",
+   w:"Criado em 12/11. O agente triagem-comentarios-negativos usa as regras da skill de mesmo nome e roda sozinho pelo Agendador do Windows. Falta registrar na arquitetura de processos.",ok:"Criado · 14h"},
   {id:"M6",c:"media",n:"Franquias críticas de nota",p:"3.1",i:5,a:3,e:3,
    o:"Lista os imóveis abaixo de 4,80 por franquia, aponta os temas que puxam a nota para baixo e prepara o plano de ação de cada franquia.",
    w:"Hoje é manual, a cada 15 dias. Liga a nota ao trabalho com a franquia."},
@@ -216,9 +216,9 @@ const AG = [
 const CRONO = [
   ["Ter 10/11","B1","Inventário dos agentes atuais conferido na máquina"],
   ["Qua 11/11","<span class=\"k\">B2</span>Boletim diário de qualidade<br><span class=\"k\">B6</span>Panorama de Nova Ocorrência agendado (criado, adiantado de 18/11)","<span class=\"k\">M1</span>Caça às ocorrências diária<br><span class=\"k\">M12</span>Respostas às avaliações positivas do Airbnb (criado, item novo)"],
-  ["Qui 12/11","B3","M4"],
+  ["Qui 12/11","B3","<span class=\"k\">M4</span>Radar semanal de quinta<br><span class=\"k\">M5</span>Triagem diária dos comentários negativos (criado, adiantado de 16/11)"],
   ["Sex 13/11","rev"],
-  ["Seg 16/11","B4","M5"],
+  ["Seg 16/11","B4","Livre: o M5 foi adiantado para 12/11"],
   ["Ter 17/11","B5","M2"],
   ["Qua 18/11","Livre: o B6 foi adiantado para 11/11","M3"],
   ["Qui 19/11","B7","M6"],
