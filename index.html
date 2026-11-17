@@ -94,6 +94,22 @@ footer{color:var(--txt2);font-size:13px;padding:24px 0 40px;border-top:1px solid
 <main class="wrap">
 
 <section>
+  <h2>Andamento em 17/11</h2>
+  <p class="sub">Até 17/11 o cronograma previa 9 agentes: 1 está no ar (M5), 3 estão em parte, com a skill pronta mas ainda sem rodar sozinhos, e 5 estão atrasados. Além deles, entraram no ar o B6, adiantado de 18/11, e os 2 agentes do Airbnb que surgiram fora do plano (M12 e M13). Os atrasos vieram de priorizar os dois agentes do Airbnb, que não estavam no plano, e a migração das rotinas para a VPS do time.</p>
+  <div class="card scroll">
+    <table class="tbl">
+      <thead><tr><th>Situação</th><th>Agentes</th><th>Detalhe</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag ok">No ar</span></td><td>B6 · M5 · M12 · M13</td><td>Panorama de Nova Ocorrência (A21), Triagem dos comentários negativos (A19), Respostas às avaliações positivas (A22) e Contestações do Airbnb (A20). Os quatro rodam sozinhos e estão registrados na arquitetura.</td></tr>
+        <tr><td><span class="tag">Em parte</span></td><td>B1 · M1 · M2</td><td>As skills existem e são usadas quando eu peço (KPIs; caça às ocorrências; cobrança e parecer das defesas no Sapron). Falta colocar cada uma para rodar sozinha.</td></tr>
+        <tr><td><span class="tag bloq">Atrasado</span></td><td>B2 · B3 · B4 · B5 · M4</td><td>Boletim diário, alerta de volume, aviso de franquia perto da multa, chamados parados e radar semanal ainda não foram criados.</td></tr>
+        <tr><td><span class="tag ok">Fora do plano</span></td><td>Navi · Elogios · Monitores</td><td>Navi, com o resumo diário das minhas pendências às 15h (A23); Elogios às franquias, na 1ª e na 3ª quarta (A24); Monitor das Franquias Premium (R13) e Monitor de Envio em Massa (R11), que estavam parados desde 12/11 e voltaram a publicar em 17/11.</td></tr>
+        <tr><td><span class="tag">VPS do time</span></td><td>Migração</td><td>Elogios e os dois monitores já rodam na VPS do time. Navi e Respostas Airbnb estão montadas e testadas lá, esperando a conta do Claude da VPS voltar do limite semanal, em 21/11. Detalhes e pendências no <a href="https://victoriamagri.github.io/migracao-vps-backoffice/">relatório da migração</a>.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section>
   <h2>Como a lista foi priorizada</h2>
   <p class="sub">Cada oportunidade saiu de um processo da arquitetura da Qualidade que hoje é manual, está em criação ou depende de alguém rodar uma skill. A nota vai de 1 a 5 em cada critério.</p>
   <div class="card crit">
@@ -141,14 +157,14 @@ footer{color:var(--txt2);font-size:13px;padding:24px 0 40px;border-top:1px solid
   <h2>Pontos de atenção</h2>
   <div class="notas">
     <div class="nota"><h3>A meta de dois por dia acaba em cerca de duas semanas</h3><p>A área tem perto de 20 agentes reais para criar. Depois disso, o ganho está em evoluir os que já rodam, e a meta da semana passa a ser de melhorias medidas, não de quantidade.</p></div>
-    <div class="nota"><h3>Rodar sozinho depende de onde o agente vive</h3><p>Agendador do Windows e rotinas do Claude Code só rodam com o computador ligado. Os agentes que falam com a franquia (B7, M2 e M3) devem ir para a plataforma oficial de agentes da Seazone.</p></div>
+    <div class="nota"><h3>Rodar sozinho depende de onde o agente vive</h3><p>Agendador do Windows e rotinas do Claude Code só rodam com o computador ligado. Por isso as rotinas estão migrando para a VPS do time (<a href="https://victoriamagri.github.io/migracao-vps-backoffice/">relatório da migração</a>). Os agentes que falam com a franquia (B7, M2 e M3) devem ir para a plataforma oficial de agentes da Seazone.</p></div>
     <div class="nota"><h3>Um item está parado por regra de negócio</h3><p>O agente de detratores e stop de crescimento (6.6) só começa quando a regra estiver definida. Até lá, fica fora do cronograma.</p></div>
   </div>
 </section>
 
 </main>
 
-<footer><div class="wrap">Franquias · Qualidade e Fiscalização · Documento interno · atualizado em 16/11/2026</div></footer>
+<footer><div class="wrap">Franquias · Qualidade e Fiscalização · Documento interno · atualizado em 17/11/2026</div></footer>
 
 <script>
 const AG = [
@@ -169,7 +185,7 @@ const AG = [
    w:"Regra fixa, hoje feita à mão."},
   {id:"B6",c:"baixa",n:"Panorama de Nova Ocorrência agendado",p:"5.1 · 5.3",i:3,a:4,e:1,
    o:"De segunda a sexta, às 16h, mostra os cards ativos em Nova Ocorrência por origem, com evidência, duplicidade e pontos de atenção antes de aprovar. Em seguida confere no Sapron os cards de Implantação e, quando houver, os de Manutenção, com veredito por card.",
-   w:"Criado em 11/11. Roda sozinho pelo Agendador do Windows e, ao terminar, abre o terminal com o Claude já na conversa do resultado. As análises de Implantação e de Manutenção rodam como workflow. Falta registrar na arquitetura de processos.",ok:"Criado · 16h"},
+   w:"Criado em 11/11. Roda sozinho pelo Agendador do Windows e, ao terminar, abre o terminal com o Claude já na conversa do resultado. As análises de Implantação e de Manutenção rodam como workflow. Registrado na arquitetura de processos como A21. Na VPS do time vai entregar por DM da Navi; aguarda o Lovable e a conta do Claude da VPS.",ok:"Criado · 16h"},
   {id:"B7",c:"baixa",n:"Comunicar a multa à franquia",p:"6.4",i:3,a:4,e:2,
    o:"Quando a multa é validada, redige a comunicação padrão com as ocorrências que a justificam, para envio depois do ok.",
    w:"Hoje é manual e segue sempre o mesmo modelo."},
@@ -178,7 +194,7 @@ const AG = [
    w:"É a maior fonte de ocorrência perdida. A skill caca-ocorrencias existe, mas roda só quando pedida."},
   {id:"M2",c:"media",n:"Cobrar e julgar a defesa da franquia",p:"5.5 · 5.6",i:5,a:4,e:4,
    o:"Lê os chamados de ocorrência em andamento, cobra quem passou do prazo de 48 horas e dá o parecer de cada defesa: justificativa válida, aviso formal ou pedido de evidência.",
-   w:"Hoje a cobrança é manual. A skill respostas-sapron faz o parecer; falta rodar sozinha com envio após o ok."},
+   w:"As skills cobrar-sapron (cobrança de 24 horas, desde 12/11) e respostas-sapron (parecer de cada defesa, desde 11/11) estão prontas e em uso quando eu peço; estão na arquitetura como S7 e S8. Falta rodar sozinho, com envio após o ok.",ok:"Em parte · skills prontas"},
   {id:"M3",c:"media",n:"Encerrar e aplicar a ocorrência",p:"5.7",i:4,a:4,e:3,
    o:"Depois do veredito ou do prazo vencido, encerra o chamado e move o card para aplicado ou justificado.",
    w:"Fecha o ciclo do M2. Hoje é manual."},
@@ -187,7 +203,7 @@ const AG = [
    w:"Precisa de IA para explicar a causa. Hoje está em criação."},
   {id:"M5",c:"media",n:"Triagem diária dos comentários negativos",p:"1.4",i:5,a:4,e:3,
    o:"De segunda a sexta, às 14h, analisa os comentários de nota 0,5 a 3,5 que chegaram no dia (na segunda, também os de sábado e domingo) e dá o parecer de ocorrência e de manutenção. Ao terminar, abre o terminal com o Claude já na conversa e envia pelos botões do case-cheer só depois do ok.",
-   w:"Criado em 12/11. O agente triagem-comentarios-negativos usa as regras da skill de mesmo nome e roda sozinho pelo Agendador do Windows. Registrado na arquitetura de processos como A19, no processo 1.4.",ok:"Criado · 14h"},
+   w:"Criado em 12/11. O agente triagem-comentarios-negativos usa as regras da skill de mesmo nome e roda sozinho pelo Agendador do Windows. Registrado na arquitetura de processos como A19, no processo 1.4. Na VPS do time, a leitura vai para lá e o envio fica no notebook; aguarda o Lovable e a conta do Claude da VPS.",ok:"Criado · 14h"},
   {id:"M6",c:"media",n:"Franquias críticas de nota",p:"3.1",i:5,a:3,e:3,
    o:"Lista os imóveis abaixo de 4,80 por franquia, aponta os temas que puxam a nota para baixo e prepara o plano de ação de cada franquia.",
    w:"Hoje é manual, a cada 15 dias. Liga a nota ao trabalho com a franquia."},
@@ -208,21 +224,21 @@ const AG = [
    w:"Hoje é manual. Precisa ler muitas fontes diferentes."},
   {id:"M12",c:"media",n:"Respostas às avaliações positivas do Airbnb",p:"a definir",i:4,a:4,e:2,
    o:"De segunda a sexta, às 9h, puxa da Stays as avaliações nota 4 e 5 ainda dentro da janela de 13 dias, redige as respostas das 50 que vencem primeiro e separa as que citam problema para a manutenção. Ao terminar, abre o terminal com o Claude já na conversa e publica pelo Chrome só depois do “manda”.",
-   w:"Entrou fora do levantamento inicial, em 11/11. A skill responder-airbnb já existia. Falta registrar na arquitetura de processos.",ok:"Criado · 9h"},
+   w:"Entrou fora do levantamento inicial, em 11/11. A skill responder-airbnb já existia. Registrado na arquitetura de processos como A22. Desde 17/11 a VPS do time monta o lote e redige as respostas (testado com as 50 do dia); a publicação continua no notebook. Liga no agendamento da VPS quando a conta do Claude de lá voltar.",ok:"Criado · 9h"},
   {id:"M13",c:"media",n:"Rotina diária de contestações do Airbnb",p:"2.1 · 2.2 · 2.3",i:5,a:4,e:2,
    o:"Todo dia, às 9h ou assim que o computador liga, puxa as avaliações novas do Airbnb abaixo de 5, classifica pela régua calibrada e monta o lote do dia, até 25. Se o computador ficou desligado, acumula: a rodada seguinte pega tudo o que chegou e fecha os relatórios das noites perdidas. Ao terminar, abre o terminal com o Claude mostrando o que acumulou, o lote e o que pede o meu ok, e envia pelo Chrome só depois do “manda”. Às 21h30 fecha o dia com placar e relatório.",
-   w:"Entrou fora do levantamento inicial, em 16/11. A skill contestar-airbnb já existia e as rodadas eram à mão (sem rodada de 13 a 15/11). Agendador do Windows: tarefa da manhã com gatilho às 9h e ao fazer login, e recuperação das execuções perdidas. Registrado na arquitetura de processos como A20.",ok:"Criado · 9h ou ao ligar"},
+   w:"Entrou fora do levantamento inicial, em 16/11. A skill contestar-airbnb já existia e as rodadas eram à mão (sem rodada de 13 a 15/11). Agendador do Windows: tarefa da manhã com gatilho às 9h e ao fazer login, e recuperação das execuções perdidas. Registrado na arquitetura de processos como A20. Na VPS do time, a seleção vai para lá e o envio fica no notebook, porque a VPS não tem navegador.",ok:"Criado · 9h ou ao ligar"},
   {id:"—",c:"alta",n:"Detratores e stop de crescimento",p:"6.6",i:0,a:0,e:0,bloq:true,
    o:"Identificar franquias detratoras e aplicar o stop de crescimento.",
    w:"Parado: falta definir a regra de negócio."}
 ];
 const CRONO = [
-  ["Ter 10/11","B1","Inventário dos agentes atuais conferido na máquina"],
-  ["Qua 11/11","<span class=\"k\">B2</span>Boletim diário de qualidade<br><span class=\"k\">B6</span>Panorama de Nova Ocorrência agendado (criado, adiantado de 18/11)","<span class=\"k\">M1</span>Caça às ocorrências diária<br><span class=\"k\">M12</span>Respostas às avaliações positivas do Airbnb (criado, item novo)"],
-  ["Qui 12/11","B3","<span class=\"k\">M4</span>Radar semanal de quinta<br><span class=\"k\">M5</span>Triagem diária dos comentários negativos (criado, adiantado de 16/11)"],
+  ["Ter 10/11","<span class=\"k\">B1</span>Agente de KPIs da Qualidade (em parte: as skills existem, falta rodar sozinho)","Inventário dos agentes atuais conferido na máquina"],
+  ["Qua 11/11","<span class=\"k\">B2</span>Boletim diário de qualidade (atrasado)<br><span class=\"k\">B6</span>Panorama de Nova Ocorrência agendado (criado, adiantado de 18/11)","<span class=\"k\">M1</span>Caça às ocorrências diária (em parte: a skill existe, falta rodar sozinha)<br><span class=\"k\">M12</span>Respostas às avaliações positivas do Airbnb (criado, item novo)"],
+  ["Qui 12/11","<span class=\"k\">B3</span>Alerta de volume fora da faixa (atrasado)","<span class=\"k\">M4</span>Radar semanal de quinta (atrasado)<br><span class=\"k\">M5</span>Triagem diária dos comentários negativos (criado, adiantado de 16/11)"],
   ["Sex 13/11","rev"],
-  ["Seg 16/11","B4","<span class=\"k\">M13</span>Rotina diária de contestações do Airbnb (criado, item novo; o M5 foi adiantado para 12/11)"],
-  ["Ter 17/11","B5","M2"],
+  ["Seg 16/11","<span class=\"k\">B4</span>Aviso de franquia perto da multa (atrasado)","<span class=\"k\">M13</span>Rotina diária de contestações do Airbnb (criado, item novo; o M5 foi adiantado para 12/11)"],
+  ["Ter 17/11","<span class=\"k\">B5</span>Chamados parados há mais de 5 dias (atrasado)","<span class=\"k\">M2</span>Cobrar e julgar a defesa da franquia (em parte: skills prontas, falta rodar sozinho)"],
   ["Qua 18/11","Livre: o B6 foi adiantado para 11/11","M3"],
   ["Qui 19/11","B7","M6"],
   ["Sex 20/11","rev"],
